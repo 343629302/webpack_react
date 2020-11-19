@@ -10,18 +10,38 @@ class todoStoreList extends React.Component {
     render() {
         return (
             <>
-                {/* <ul style={{ marginRight: '20px' }}>
+                <ul style={{ marginRight: '20px' }}>
                     {this.props.list.map((item, index) => {
-                        return <li key={index}>{item}</li>;
+                        return <li key={index} onClick={() => this.props.handleItemClick(index)}>{item}</li>;
                     })}
-                </ul> */}
+                </ul>
             </>
         );
     }
 }
 
-todoStoreList.propTypes = {
-    list: PropTypes.array
+const mapStateToProps = (state) => {
+    return {
+        list: state.list
+    }
 }
 
-export default connect()(todoStoreList);
+const mapDispatchToProps = (dispatch) =>{
+    return {
+        handleItemClick(index){
+            const action = {
+                type: 'delete_list',
+                index: index
+            }
+            dispatch(action);
+        }
+    }
+}
+
+
+todoStoreList.propTypes = {
+    list: PropTypes.array,
+    handleItemClick: PropTypes.func
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(todoStoreList);
