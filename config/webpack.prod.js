@@ -1,31 +1,22 @@
-const {
-  merge
-} = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const commonConfig = require("./webpack.common");
-const {
-  CleanWebpackPlugin
-} = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-const {
-  CleanWebpackPlugin
-} = require('clean-webpack-plugin');
-
 const prodConfig = {
   /* 生产模式 */
-  mode: 'production',
+  mode: "production",
   module: {
     /* 规则 */
-    rules: [{
+    rules: [
+      {
         test: /\.css$/,
-        exclude: /node_modules/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
       {
         test: /\.scss$/,
-        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
@@ -92,6 +83,6 @@ const prodConfig = {
       },
     },
   },
-}
+};
 
 module.exports = merge(commonConfig, prodConfig);

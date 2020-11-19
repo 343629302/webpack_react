@@ -6,36 +6,41 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   /* 入口文件 */
   entry: "./src/index.js",
-
   /* 出口文件 */
   output: {
     path: path.resolve(__dirname, PATHS["dist"]),
     filename: "js/[name].[hash].js",
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: [{
-          loader: "babel-loader" // options 在 .babelrc 定义
-        }, {
-          loader: "eslint-loader",
-          options: {
-            fix: true,
-            enforce: true
-          }
-        }],
+        include: /src/,
+        use: [
+          {
+            loader: "babel-loader", // options 在 .babelrc 定义
+          },
+          {
+            loader: "eslint-loader",
+            options: {
+              fix: true,
+              enforce: true,
+            },
+          },
+        ],
       },
       {
         //字体
         test: /\.(eot|woff2|woff|ttf|svg)/,
-        use: [{
-          loader: "url-loader",
-          options: {
-            name: "[name][hash].[ext]",
-            outputPath: "dist/assets/fonts",
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              name: "[name][hash].[ext]",
+              outputPath: "dist/assets/fonts",
+            },
           },
-        }, ],
+        ],
       },
     ],
   },
