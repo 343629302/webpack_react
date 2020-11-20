@@ -12,12 +12,21 @@ class todoStoreList extends React.Component {
             <>
                 <ul style={{ marginRight: '20px' }}>
                     {this.props.list.map((item, index) => {
-                        return <li key={index} onClick={() => this.props.handleItemClick(index)}>{item}</li>;
+                        return <li key={index}>
+                            <span onClick={() => this.props.handleItemClick(index)}>{item}</span>
+                            <button onClick={() => this.props.handleGetList()}>获取列表</button>
+                        </li>;
                     })}
                 </ul>
             </>
         );
     }
+}
+
+todoStoreList.propTypes = {
+    list: PropTypes.array,
+    handleItemClick: PropTypes.func,
+    handleGetList: PropTypes.func,
 }
 
 const mapStateToProps = (state) => {
@@ -34,14 +43,15 @@ const mapDispatchToProps = (dispatch) =>{
                 index: index
             }
             dispatch(action);
+        },
+        handleGetList(){
+            const action = {
+                type: 'GET_TODOLIST',
+            }
+            dispatch(action);
         }
     }
 }
 
-
-todoStoreList.propTypes = {
-    list: PropTypes.array,
-    handleItemClick: PropTypes.func
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(todoStoreList);

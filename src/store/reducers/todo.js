@@ -11,6 +11,8 @@ function todos(state = defaultState, action) {
         const temState = Object.assign({}, JSON.parse(JSON.stringify(state)));
         temState.list.splice(action.index, 1);
         return temState;
+    } else if (action.type === 'get_list'){
+        console.log(2);
     }
     return state;
 }
