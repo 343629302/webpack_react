@@ -32,7 +32,7 @@ todoStoreList.propTypes = {
 const mapStateToProps = (state) => {
     return {
         //获取state.todos.list的值
-        list: Array.from(state.get('todos').get('list'))
+        list: Array.from(state.getIn(['todos', 'list']))
     }
 }
 
