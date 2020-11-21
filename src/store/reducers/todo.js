@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 import { fromJS } from 'immutable';
 
 //fromJS实力话一个不可改变对象
