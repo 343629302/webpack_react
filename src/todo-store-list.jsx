@@ -31,7 +31,7 @@ todoStoreList.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        list: state.list
+        list: Array.from(state.todos.get('list'))
     }
 }
 

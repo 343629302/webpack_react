@@ -10,15 +10,7 @@ class ToDoList extends React.Component {
         this.state = {
             inputValue: '',
             list: [],
-            storeList: store.getState().list
         };
-
-        //监听store变化
-        this.unsubscribe = store.subscribe(() =>
-            this.setState({
-                storeList: store.getState().list
-            })
-        )
     }
 
     handleValueChange(val) {
