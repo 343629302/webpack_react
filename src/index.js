@@ -12,8 +12,9 @@ ReactDOM.render(
     <Provider store={store}>
         {/* hash路由  */}
         <HashRouter>
-            {/* path:地址  exact:是否必须全等于才显示，最好有这个参数   render:渲染的页面    */}
-            <Route path="/" exact render={() => <ToDoList />}></Route>
+            {/* path:地址  exact:是否必须全等于才显示，最好有这个参数   render:渲染的页面   
+            component:组件  */}
+            <Route path="/" exact component={ToDoList}></Route>
             <Route path="/detail" exact render={() => <App />}></Route>
         </HashRouter>
     </Provider>,

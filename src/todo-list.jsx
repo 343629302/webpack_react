@@ -3,6 +3,7 @@ import { hot } from 'react-hot-loader/root';
 import { Button, Input } from 'antd';
 import store from './store/index.js';
 import TodoStoreList from './todo-store-list.jsx';
+import { Redirect } from 'react-router-dom';
 
 class ToDoList extends React.Component {
     constructor() {
@@ -10,6 +11,7 @@ class ToDoList extends React.Component {
         this.state = {
             inputValue: '',
             list: [],
+            login: true,
         };
     }
 
@@ -28,42 +30,30 @@ class ToDoList extends React.Component {
         });
     }
 
-    handleListItemClick(val, index){
+    handleListItemClick(val, index) {
         let temList = [].concat(this.state.list);
         temList.splice(index, 1);
         this.setState({
-            list: temList
-        })
+            list: temList,
+        });
         store.dispatch({
             type: 'add_list',
-            item: val
-        })
+            item: val,
+        });
     }
 
     render() {
-        return (
-            <>
-                <div style={{ display: 'flex', marginTop: '20px' }}>
-                    <Input
-                        placeholder="Basic usage"
-                        style={{ width: '200px', marginRight: '20px', marginLeft: '20px' }}
-                        value={this.state.inputValue}
-                        onChange={(val) => this.handleValueChange(val)}
-                    />
-                    <Button type="primary" onClick={() => this.handleClick()}>
-                        保存
-                    </Button>
-                </div>
-                <div style={{ display: 'flex', marginTop: '20px' }}>
-                    <ul>
-                        {this.state.list.map((item, index) => {
-                            return <li key={index} onClick={()=>this.handleListItemClick(item, index)}>{item}</li>;
-                        })}
-                    </ul>
-                    <TodoStoreList></TodoStoreList>
-                </div>
-            </>
-        );
+        //如果登陆状态，则显示页面
+        if (this.state.login) {
+            return (
+                <>
+                    <div>界面</div>
+                </>
+            );
+        //如果不是登陆状态，则没有权限，会跳转回去登陆页面
+        } else {
+            return <Redirect to="/app"></Redirect>;
+        }
     }
 }
 
