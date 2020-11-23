@@ -31,7 +31,7 @@ const prodConfig = {
           {
             loader: "url-loader",
             options: {
-              name: "[name].[hash].[ext]",
+              name: "[name].[fullhash].[ext]",
               // 小于 5kb 的图片用 base64 格式产出
               // 否则，依然延用 file-loader 的形式，产出 url 格式
               limit: 5 * 1024,
@@ -49,7 +49,7 @@ const prodConfig = {
     new CleanWebpackPlugin(),
     /* 抽离css文件 */
     new MiniCssExtractPlugin({
-      filename: "assets/css/[name].[hash].css",
+      filename: "assets/css/[name].[fullhash].css",
     }),
   ],
 

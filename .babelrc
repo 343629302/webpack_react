@@ -8,7 +8,10 @@
       },
       "react"
     ],
-    "@babel/preset-react"
+    //react 17的新转换,无需再引入React来转换jsx
+    ["@babel/preset-react", {
+      "runtime": "automatic"
+    }]
   ],
   "plugins": [
     ["@babel/plugin-transform-runtime", { "corejs": 2 }],

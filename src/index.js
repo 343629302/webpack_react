@@ -15,7 +15,7 @@ ReactDOM.render(
             {/* path:地址  exact:是否必须全等于才显示，最好有这个参数   render:渲染的页面   
             component:组件  */}
             <Route path="/" exact component={ToDoList}></Route>
-            <Route path="/detail" exact render={() => <App />}></Route>
+            <Route path="/app" exact component={App} ></Route>
         </HashRouter>
     </Provider>,
     document.getElementById('root')

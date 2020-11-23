@@ -9,7 +9,7 @@ module.exports = {
   /* 出口文件 */
   output: {
     path: path.resolve(__dirname, PATHS["dist"]),
-    filename: "js/[name].[hash].js",
+    filename: "js/[name].[fullhash].js",
   },
   module: {
     rules: [
@@ -36,7 +36,7 @@ module.exports = {
           {
             loader: "url-loader",
             options: {
-              name: "[name][hash].[ext]",
+              name: "[name][fullhash].[ext]",
               outputPath: "dist/assets/fonts",
             },
           },

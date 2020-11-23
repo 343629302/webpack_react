@@ -1,48 +1,42 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { hot } from 'react-hot-loader/root';
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { date: new Date(), text: 0 };
-        this.numbers = [1, 2, 4, 5, 6, 7, 8];
-    }
+function App() {
 
-    componentDidMount() {
-        this.timerID = setInterval(() => this.tick(), 1000);
-    }
+    /*
+     * sate 表示数据
+     * setState 表示修改数据的方法
+     * useState(init)   init 表示初始化,只会在第一次生效.
+     */
 
-    componentWillUnmount() {
-        clearInterval(this.timerID);
-    }
+    const [state, setState] = useState({
+        title: '323123',
+    });
 
-    tick() {
-        this.setState({
-            date: new Date(),
-        });
-    }
+    useEffect(
+        () => {
+            //初次渲染和更新渲染的时候都会触发
+            console.log(2);
+        },
+        //当含有第二个参数的时候只会在初次渲染的时候触发
+        []
+    );
 
-    handleClick() {
-        this.setState({
-            text: this.state.text + 1,
-        });
-    }
-
-    render() {
-        return (
-            <div>
-                <h1 onClick={() => this.handleClick()}>
-                    Hello, world!{this.state.text}
-                </h1>
-                <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-                <ul>
-                    {this.numbers.map((number) => (
-                        <li key={number.toString()}>{number}</li>
-                    ))}
-                </ul>
+    return (
+        <>
+            <div
+                onClick={() =>
+                    setState({
+                        title: '5555',
+                        name: '8888',
+                    })
+                }
+            >
+                {state.title}
             </div>
-        );
-    }
+            <div>{state.name}</div>
+        </>
+    );
 }
 
 export default hot(App);
