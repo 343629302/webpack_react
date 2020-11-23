@@ -17,7 +17,7 @@ module.exports = {
     },
     sourceType: "module",
   },
-  plugins: ["react"],
+  plugins: ["react","react-hooks"],
   globals: {
     __DEV__: false,
     __dirname: false,
@@ -280,5 +280,9 @@ module.exports = {
     //关闭jsx-uses-react 和 react-in-jsx-scope 规则
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
+    //检查effect依赖
+    "react-hooks/exhaustive-deps":"warn",
+    //检查hook依赖
+    "react-hooks/rules-of-hooks":"error"
   },
 };

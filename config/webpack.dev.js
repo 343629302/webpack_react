@@ -7,7 +7,7 @@ const devConfig = {
   /* 模式 */
   mode: "development",
   /* sorce-map */
-  devtool: 'cheap-module-source-map',
+  devtool: "cheap-module-source-map",
   /* 本地服务 */
   devServer: {
     inline: true, //实时刷新

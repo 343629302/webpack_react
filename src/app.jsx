@@ -9,8 +9,8 @@ function App() {
      * useState(init)   init 表示初始化,只会在第一次生效.
      */
 
-    const [state, setState] = useState({
-        title: '323123',
+    const [state, setState] = useState((val) => {
+        return 'hahhahaha';
     });
 
     useEffect(
@@ -24,17 +24,7 @@ function App() {
 
     return (
         <>
-            <div
-                onClick={() =>
-                    setState({
-                        title: '5555',
-                        name: '8888',
-                    })
-                }
-            >
-                {state.title}
-            </div>
-            <div>{state.name}</div>
+            <div onClick={() => setState('77777')}>{state}</div>
         </>
     );
 }
